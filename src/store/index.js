@@ -1,12 +1,11 @@
-import {legacy_createStore as createStore, combineReducers} from 'redux';
+import { legacy_createStore as createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import categoriesReducer from './categories';
+import reducer from './categories';
 
-let reducers = combineReducers({
-    //all the reducers
-    categories: categoriesReducer,
+const reducers = combineReducers({
+  store: reducer,
 });
 
 const store = () => createStore(reducers, composeWithDevTools());
 
-export default store() ;
+export default store();
