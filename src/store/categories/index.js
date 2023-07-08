@@ -7,16 +7,17 @@ const initialState ={
     activeCategory: '',
 }
 
-function categoriesReducer(state=initialState, action){
+
+function categoryReducer(state=initialState, action){
   switch(action.type){
-    case 'SET_CATEGORIES':
+    case 'SET_CATEGORY':
       return {
         ...state,
-        activeCategory: action.payload
+        activeCategory: action.payload,
       }
     default:
       return state;
   }
 }
 
-export default categoriesReducer;
+export default categoryReducer;

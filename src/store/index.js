@@ -1,12 +1,17 @@
-import {legacy_createStore as createStore, combineReducers} from 'redux';
+import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import categoriesReducer from './categories';
+import thunk from 'redux-thunk';
 
-let reducers = combineReducers({
-    //all the reducers
-    categories: categoriesReducer,
+import categoryReducer from './categories';
+import productsReducer from './products';
+import cartReducer from './cart';
+
+const reducers = combineReducers({
+  categories: categoryReducer,
+  products: productsReducer,
+  cart: cartReducer
 });
 
-const store = () => createStore(reducers, composeWithDevTools());
+const store = () => createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
-export default store() ;
+export default store();
