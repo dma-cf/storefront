@@ -1,7 +1,11 @@
 import { Button, Grid, Typography } from '@mui/material'
+import { useSelector } from 'react-redux';
 
 
 function Header() {
+  
+  const {cart} = useSelector((state) => state.cart);
+
   return (
     <>
       <Grid container>
@@ -15,7 +19,7 @@ function Header() {
         <Grid item xs style={{ alignSelf: 'center', textAlign: 'right' }}>
           <Button variant="text">
             <Typography color='black'>
-              Cart (0)
+              Cart ({cart.length})
             </Typography>
           </Button>
         </Grid>
