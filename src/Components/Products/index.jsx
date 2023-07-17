@@ -28,8 +28,10 @@ function Products() {
   return (
     <>
       <When condition={activeCategory}>
-        <h2>{activeCategory.displayName}</h2>
-        <h4>{activeCategory.description}</h4>
+        <div style={{textAlign:'center', margin:'5rem auto'}}>
+          <Typography variant='h2' style={{textTransform:'capitalize'}}>{activeCategory.name}</Typography>
+          <Typography variant='overline'>{activeCategory.description}</Typography>
+        </div>
         <Grid container spacing={2} width="80%" margin="auto">
           {
             products.map((product, index) => (
@@ -42,8 +44,9 @@ function Products() {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {product.name} {product.inStock}
+                      {product.name}
                     </Typography>
+                    <Typography variant='caption'>Qty: {product.inStock}</Typography>
 
                   </CardContent>
                   <CardActions>

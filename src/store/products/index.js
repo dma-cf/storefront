@@ -28,7 +28,7 @@ const initialState = [
   }
 
   export const backToStock = (product) => async (dispatch) => {
-    product = {...product, inStock: product.inStock + 1};
+    product = {...product, inStock: product.inStock};
     await axios.put(`https://api-js401.herokuapp.com/api/v1/products/${product._id}`, product);
   
     dispatch(getProducts(product.category));

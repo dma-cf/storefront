@@ -19,16 +19,16 @@ function SimpleCart() {
       <When condition={cart.length > 0}>
         <div className="simple-cart">
           <ul>
-
             {
               cart.map((product, index) => (
-                <li key={`simpleCart-${index}`} className="item">
+                <li key={`simpleCart-${index}`} className="item" style={{textTransform:'capitalize'}}>
                   {product.name}
                   <span
                     onClick={() => removeDispatcher(product)}
                     className="remove"
+                    style={{textAlign: 'center'}}
                   >
-                    X
+                    x
                   </span>
                 </li>
               ))
