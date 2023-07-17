@@ -1,36 +1,40 @@
-import { ButtonGroup, Button } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { filterProducts,set } from "../../store/actions";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { Typography } from '@mui/material';
+import { getCategories, setCategory } from '../../store/categories';
+import { setProducts } from '../../store/products';
 
-function Categories () {
-  const {categories} = useSelector((state) => state.categories);
-
+function Categories() {
+  const { categories } = useSelector((state) => state.categories)
   const dispatch = useDispatch();
 
-  const handleChangeCategory = (category) => {
-    dispatch(filterProducts(category));
-  }
+  const setDispatcher = (category) => {
+    dispatch(setCategory(category));
+  };
 
-  onload = () => {
-    dispatch(set(categories[0]));
-  }
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
 
   return (
-    <>
-      <h1>Browse our Categories</h1>
-
-      <ButtonGroup variant="text">
-        {categories.map((category, idx) => (
-          <Button 
-            key={`cat-${idx}`}
-            onClick={() => handleChangeCategory(category)}
-          >
-            {category.displayName}
-          </Button>
-        ))}
+    <div style={{textAlign:'center'}}>
+      <Typography variant='h4' style={{marginTop: '100px'}}>Browse our Categories</Typography>
+      <ButtonGroup variant="text" aria-label="category button group">
+        {
+          categories.map((category, idx) => (
+            <Button
+              key={`${category}-${idx}`}
+              onClick={() => setDispatcher(category)} >
+              {category.name}
+            </Button>
+          ))
+        }
       </ButtonGroup>
-    </>
-  );
+
+    </div>
+  )
 }
 
-export default Categories;
+export default Categories

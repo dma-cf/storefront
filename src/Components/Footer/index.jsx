@@ -1,11 +1,14 @@
 import { Typography } from "@mui/material"
 
 function Footer() {
+
+  let year = new Date().getFullYear();
+
   return (
     <>
-    <footer style={{backgroundColor:'#eee', padding:'4rem', textAlign:'center'}}>
+    <footer style={{backgroundColor:'#eee', padding:'2rem', textAlign:'center', marginTop:'2rem'}}>
       <Typography variant="h5">
-        &copy; 2023 Javscript 401d53
+        &copy; {year} JavaScript 401d53
       </Typography>
       <Typography color="textSecondary">
         React + Redux + Material UI
