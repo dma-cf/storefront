@@ -6,12 +6,12 @@ function Storefront() {
 
   return (
     <>
-            <Categories />
-        <SimpleCart />
-        <Products />
-        </>
+      <Categories />
+      <SimpleCart />
+      <Products />
+    </>
   )
-  
+
 }
 
 export default Storefront;
