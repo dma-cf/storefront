@@ -1,23 +1,28 @@
-const initialState ={
-    categories: [
-      {name: 'electronics', displayName: 'Electronics', description: 'Electronic products'},
-      {name: 'food', displayName: 'Food', description: 'Food products'},
-      {name: 'clothing', displayName: 'Clothing', description: 'Clothing products'}    
-    ],
-    activeCategory: '',
-}
+import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-
-function categoryReducer(state=initialState, action){
-  switch(action.type){
-    case 'SET_CATEGORY':
-      return {
-        ...state,
-        activeCategory: action.payload,
-      }
-    default:
-      return state;
+const categorySlice = createSlice({
+  name: 'categories',
+  initialState: {
+    categories: [],
+    activeCategory: ''
+  },
+  reducers: {
+    setCategory: (state, action) => {
+    return {...state, activeCategory: action.payload}
+    },
+    setInitialCategories: (state, action) => {
+      state.categories = action.payload;
+    }
   }
+
+});
+
+export const getCategories = () => async (dispatch, getState) => {
+let response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
+dispatch(setInitialCategories(response.data.results));
+
 }
 
-export default categoryReducer;
+export const { setCategory, setInitialCategories } = categorySlice.actions;
+export default categorySlice.reducer;
